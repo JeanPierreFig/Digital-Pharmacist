@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZipCodeInputViewController.h"
 
-@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,ZipCodeDelegate>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *zipCodes;
 

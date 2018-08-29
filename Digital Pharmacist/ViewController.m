@@ -23,7 +23,19 @@
     _tableView.dataSource = self;
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"AddSegue"]) {
+        ZipCodeInputViewController *vc = [segue destinationViewController];
+        vc.delegate = self;
+    }
+}
 
+#pragma mark ZipCodeDelegate
+
+- (void)didAddZipCode:(NSString *)code {
+    [_zipCodes addObject:code];
+    [_tableView reloadData];
+}
 
 #pragma mark UITableViewDelegate
 
@@ -45,8 +57,4 @@
     cell.textLabel.text = _zipCodes[indexPath.row];
     return cell;
 }
-
-
-
-
 @end
