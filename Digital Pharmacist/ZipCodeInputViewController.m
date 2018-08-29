@@ -20,6 +20,31 @@
     _inputTextField.delegate = self;
 }
 
+
+- (void)getLocationFrom:(NSString*)zip {
+    NSString *dataUrl = [NSString stringWithFormat:@"https://www.zipcodeapi.com/rest/jdgGtqJNwsJkRXtm26y4mItDfryt9ep9wDmwdPk0s7XXPQPh9x4SJehUCPNsj0qP/info.json/%@/degrees",zip];
+    NSURL *url = [NSURL URLWithString:dataUrl];
+
+    NSURLSessionDataTask *downloadTask = [[NSURLSession sharedSession]
+    dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSError *jsonError;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+        if (jsonError) {
+            NSLog(@"%@", jsonError.localizedDescription);
+            return;
+        }
+        if (dict[@"city"] && dict[@"state"]) {
+            NSString *location  = [NSString stringWithFormat:@"%@, %@",dict[@"city"],dict[@"state"]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.locationText.text = location;
+            });
+        }
+    }];
+    
+    [downloadTask resume];
+}
+
 - (IBAction)dissmissViewController:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
@@ -29,10 +54,15 @@
     [self dissmissViewController:self];
 }
 
-
 #pragma mark UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (range.location == 4) {
+        [self getLocationFrom:[NSString stringWithFormat:@"%@%@",textField.text,string]];
+    }
+    else {
+        _locationText.text = @"";
+    }
     return (range.location > 4) ? NO : YES;
 }
 

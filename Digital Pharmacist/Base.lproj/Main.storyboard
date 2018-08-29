@@ -108,6 +108,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bm4-1u-9vu">
+                                <rect key="frame" x="171" y="231" width="32.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -119,12 +125,15 @@
                             <constraint firstItem="HII-M9-6qm" firstAttribute="leading" secondItem="pty-XT-y24" secondAttribute="leading" id="bl1-3E-vv9"/>
                             <constraint firstItem="VK1-0k-6QU" firstAttribute="top" secondItem="YRI-JJ-vTV" secondAttribute="bottom" constant="8" id="kYt-tu-wIj"/>
                             <constraint firstItem="HII-M9-6qm" firstAttribute="trailing" secondItem="pty-XT-y24" secondAttribute="trailing" id="lOJ-VI-SIc"/>
+                            <constraint firstItem="Bm4-1u-9vu" firstAttribute="top" secondItem="VK1-0k-6QU" secondAttribute="bottom" constant="8" id="peM-JH-gjx"/>
+                            <constraint firstItem="Bm4-1u-9vu" firstAttribute="centerX" secondItem="VK1-0k-6QU" secondAttribute="centerX" id="wt0-6Z-BWG"/>
                             <constraint firstItem="YRI-JJ-vTV" firstAttribute="leading" secondItem="pty-XT-y24" secondAttribute="leading" constant="130" id="zi6-Bt-KBU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pty-XT-y24"/>
                     </view>
                     <connections>
                         <outlet property="inputTextField" destination="VK1-0k-6QU" id="TPH-Uv-Zeu"/>
+                        <outlet property="locationText" destination="Bm4-1u-9vu" id="fqY-ry-Bwz"/>
                     </connections>
                 </viewController>
             </objects>
