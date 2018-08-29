@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol ZipCodeDelegate <NSObject>
-    -(void)didAddZipCode:(NSString*)code;
+    -(void)didAddZipCode:(NSDictionary*)zipCodeData;
 @end
 
 @interface ZipCodeInputViewController : UIViewController <UITextFieldDelegate>
@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *inputTextField;
 @property (weak, nonatomic) IBOutlet UILabel *locationText;
 @property (weak) id <ZipCodeDelegate> delegate;
+@property (strong, nonatomic) NSDictionary *zipCodeData;
 
 -(void)getLocationFrom:(NSString*)zip;
 

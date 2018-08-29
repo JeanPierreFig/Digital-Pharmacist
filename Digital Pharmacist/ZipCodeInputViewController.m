@@ -34,9 +34,10 @@
             NSLog(@"%@", jsonError.localizedDescription);
             return;
         }
-        if (dict[@"city"] && dict[@"state"]) {
+        if (dict[@"city"] && dict[@"state"] && dict[@"lat"] && dict[@"lng"]) {
             NSString *location  = [NSString stringWithFormat:@"%@, %@",dict[@"city"],dict[@"state"]];
             dispatch_async(dispatch_get_main_queue(), ^{
+                self.zipCodeData = @{@"zipCode":zip,@"lat":dict[@"lat"],@"lng":dict[@"lng"],@"location":location};
                 self.locationText.text = location;
             });
         }
@@ -50,14 +51,14 @@
 }
 
 - (IBAction)addZipCode:(id)sender {
-    [_delegate didAddZipCode:_inputTextField.text];
+    [_delegate didAddZipCode:_zipCodeData];
     [self dissmissViewController:self];
 }
 
 #pragma mark UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    if (range.location == 4) {
+    if (range.location >= 4) {
         [self getLocationFrom:[NSString stringWithFormat:@"%@%@",textField.text,string]];
     }
     else {

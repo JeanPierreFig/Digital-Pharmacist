@@ -16,11 +16,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _zipCodes = [[NSMutableArray alloc] initWithObjects:@"00785",@"32828", nil];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"zipCodes"] == nil) {
+        _zipCodes = [[NSMutableArray alloc] initWithObjects:@{@"zipCode":@"32828",@"lat":@"",@"lng":@"",@"location":@"Orlando, FL"}, nil];
+    }
+    else {
+        _zipCodes = [defaults objectForKey:@"zipCodes"];
+    }
     
     //Setup Tableview
     _tableView.delegate = self;
     _tableView.dataSource = self;
+}
+
+- (void)saveDataSource {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_zipCodes forKey:@"zipCodes"];
+    [defaults synchronize];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -30,10 +42,12 @@
     }
 }
 
+
 #pragma mark ZipCodeDelegate
 
-- (void)didAddZipCode:(NSString *)code {
-    [_zipCodes addObject:code];
+- (void)didAddZipCode:(NSDictionary *)zipCodeData {
+    [_zipCodes addObject:zipCodeData];
+    [self saveDataSource];
     [_tableView reloadData];
 }
 
@@ -54,7 +68,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:cell_Id];
     }
     
-    cell.textLabel.text = _zipCodes[indexPath.row];
+    cell.textLabel.text = _zipCodes[indexPath.row][@"zipCode"];
+    cell.detailTextLabel.text = _zipCodes[indexPath.row][@"location"];
     return cell;
 }
 @end
