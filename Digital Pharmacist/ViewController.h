@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *zipCodes;
 
+- (IBAction)editButtonTapped:(UIBarButtonItem *)sender;
 -(void)saveDataSource;
 
 @end
