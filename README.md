@@ -1,5 +1,8 @@
 # Digital-Pharmacist
 
+![Screenshot 1](https://raw.githubusercontent.com/JeanPierreFig/Digital-Pharmacist/master/IMG_1600.PNG)
+![Screenshot 2](https://raw.githubusercontent.com/JeanPierreFig/Digital-Pharmacist/master/IMG_1601.PNG)
+
 # Detail challenges experienced (if any)
 The first challenge I encountered was the fact that, for the past 2 years I have mainly been coding in swift, 
 But after I started working on the project everything came back to me. Unfortunately, this led me to take a bit
