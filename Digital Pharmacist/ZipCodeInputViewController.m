@@ -54,12 +54,20 @@
     [downloadTask resume];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"InitDetail"]) {
+        WeatherViewController *destination = [segue destinationViewController];
+        destination.zipCodeData = _zipCodeData;
+    }
+}
+
 - (IBAction)dissmissViewController:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)addZipCode:(id)sender {
     if (self.isValidZipCode) {
+        [self.view endEditing:YES];
         [_delegate didAddZipCode:_zipCodeData];
         [self performSegueWithIdentifier:@"InitDetail" sender:nil];
    }

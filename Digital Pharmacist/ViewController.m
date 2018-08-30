@@ -18,7 +18,10 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"zipCodes"] == nil) {
-        _zipCodes = [[NSMutableArray alloc] initWithObjects:@{@"zipCode":@"32828",@"lat":@"",@"lng":@"",@"location":@"Orlando, FL"}, nil];
+        NSLog(@"hello");
+        _zipCodes = [[NSMutableArray alloc] initWithObjects:@{@"zipCode":@"32828",@"lat":@"28.529058",@"lng":@"-81.166348",@"location":@"Orlando, FL"},
+                     @{@"zipCode":@"78710",@"lat":@"30.260023",@"lng":@"-97.739727",@"location":@"Austin, TX"},
+                     @{@"zipCode":@"10001",@"lat":@"40.75065",@"lng":@"-73.99692400000001",@"location":@"New York, NY"},nil];
     }
     else {
         _zipCodes = [[defaults objectForKey:@"zipCodes"] mutableCopy];
@@ -55,6 +58,7 @@
 #pragma mark ZipCodeDelegate
 
 - (void)didAddZipCode:(NSDictionary *)zipCodeData {
+    NSLog(@"%@", zipCodeData);
     [_zipCodes addObject:zipCodeData];
     [self saveDataSource];
     [_tableView reloadData];

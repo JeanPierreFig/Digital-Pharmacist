@@ -51,36 +51,7 @@
 -(void)setDataSource:(NSDictionary *)data {
     //set weather data as the data source for the collectionView and tableView;
     _data = data;
-    NSLog(@"%@", _data[@"hourly"]);
     [_collectionView reloadData];
-}
-
-- (void)displayWeather:(NSDictionary *)currently {
-    [_activityIndicator stopAnimating];
-    [_iconImageView setImage:[UIImage imageNamed:currently[@"icon"]]];
-    [_location setText:_zipCodeData[@"location"]];
-    [_summary setText:currently[@"summary"]];
-    [_temperature setText:[NSString stringWithFormat:@"%li°",[currently[@"apparentTemperature"] integerValue]]];
-}
-
-
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    
-    return [_data[@"hourly"][@"data"] count];
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-   
-    static NSString *cellIdentifier = @"weatherHourCell";
-    WeatherCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    [cell.iconImageView setImage:[UIImage imageNamed:_data[@"hourly"][@"data"][indexPath.row][@"icon"]]];
-    [cell.temperature setText:[NSString stringWithFormat:@"%li°",[_data[@"hourly"][@"data"][indexPath.row][@"apparentTemperature"] integerValue]]];
-    [cell.time setText:[self convertUnix:_data[@"hourly"][@"data"][indexPath.row][@"time"]]];
-
-    return cell;
 }
 
 - (NSString *)convertUnix:(NSString *)unix {
@@ -93,7 +64,34 @@
 }
 
 - (IBAction)dissmissViewController:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
+    [self.view.window.rootViewController dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void)displayWeather:(NSDictionary *)currently {
+    [_activityIndicator stopAnimating];
+    [_iconImageView setImage:[UIImage imageNamed:currently[@"icon"]]];
+    [_location setText:_zipCodeData[@"location"]];
+    [_summary setText:currently[@"summary"]];
+    [_temperature setText:[NSString stringWithFormat:@"%li°",[currently[@"apparentTemperature"] integerValue]]];
+}
+
+#pragma mark UICollectionViewDelegate
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return [_data[@"hourly"][@"data"] count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"weatherHourCell";
+    WeatherCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    [cell.iconImageView setImage:[UIImage imageNamed:_data[@"hourly"][@"data"][indexPath.row][@"icon"]]];
+    [cell.temperature setText:[NSString stringWithFormat:@"%li°",[_data[@"hourly"][@"data"][indexPath.row][@"apparentTemperature"] integerValue]]];
+    [cell.time setText:[self convertUnix:_data[@"hourly"][@"data"][indexPath.row][@"time"]]];
+
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {
