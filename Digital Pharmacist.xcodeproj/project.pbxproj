@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F7DB4EC62136671700E03A4B /* ZipCodeInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB4EC52136671700E03A4B /* ZipCodeInputViewController.m */; };
 		F7DB4EC921373EA500E03A4B /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB4EC821373EA500E03A4B /* WeatherViewController.m */; };
+		F7DB4ECC2137B65300E03A4B /* WeatherCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB4ECB2137B65300E03A4B /* WeatherCollectionViewCell.m */; };
 		F7DE57A02135AF880066C40C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DE579F2135AF880066C40C /* AppDelegate.m */; };
 		F7DE57A32135AF880066C40C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DE57A22135AF880066C40C /* ViewController.m */; };
 		F7DE57A62135AF880066C40C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7DE57A42135AF880066C40C /* Main.storyboard */; };
@@ -33,6 +34,8 @@
 		F7DB4EC52136671700E03A4B /* ZipCodeInputViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZipCodeInputViewController.m; sourceTree = "<group>"; };
 		F7DB4EC721373EA500E03A4B /* WeatherViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
 		F7DB4EC821373EA500E03A4B /* WeatherViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		F7DB4ECA2137B65300E03A4B /* WeatherCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherCollectionViewCell.h; sourceTree = "<group>"; };
+		F7DB4ECB2137B65300E03A4B /* WeatherCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeatherCollectionViewCell.m; sourceTree = "<group>"; };
 		F7DE579B2135AF880066C40C /* Digital Pharmacist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digital Pharmacist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7DE579E2135AF880066C40C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F7DE579F2135AF880066C40C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -95,6 +98,8 @@
 				F7DB4EC52136671700E03A4B /* ZipCodeInputViewController.m */,
 				F7DB4EC721373EA500E03A4B /* WeatherViewController.h */,
 				F7DB4EC821373EA500E03A4B /* WeatherViewController.m */,
+				F7DB4ECA2137B65300E03A4B /* WeatherCollectionViewCell.h */,
+				F7DB4ECB2137B65300E03A4B /* WeatherCollectionViewCell.m */,
 				F7DE57A42135AF880066C40C /* Main.storyboard */,
 				F7DE57A72135AF8B0066C40C /* Assets.xcassets */,
 				F7DE57A92135AF8B0066C40C /* LaunchScreen.storyboard */,
@@ -214,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7DB4EC62136671700E03A4B /* ZipCodeInputViewController.m in Sources */,
+				F7DB4ECC2137B65300E03A4B /* WeatherCollectionViewCell.m in Sources */,
 				F7DE57A32135AF880066C40C /* ViewController.m in Sources */,
 				F7DE57AE2135AF8B0066C40C /* main.m in Sources */,
 				F7DB4EC921373EA500E03A4B /* WeatherViewController.m in Sources */,

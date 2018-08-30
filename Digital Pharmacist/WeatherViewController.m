@@ -16,8 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getWeather];
     
+    [self getWeather];
     [_location setText:@""];
     [_temperature setText:@""];
     [_summary setText:@""];
@@ -39,13 +39,20 @@
           if (dict[@"currently"]) {
               NSDictionary *currently = dict[@"currently"];
               dispatch_async(dispatch_get_main_queue(), ^{
-                  NSLog(@"%@", currently);
                   [self displayWeather:currently];
+                  [self setDataSource:dict];
               });
           }
       }];
     
     [downloadTask resume];
+}
+
+-(void)setDataSource:(NSDictionary *)data {
+    //set weather data as the data source for the collectionView and tableView;
+    _data = data;
+    NSLog(@"%@", _data[@"hourly"]);
+    [_collectionView reloadData];
 }
 
 - (void)displayWeather:(NSDictionary *)currently {
@@ -54,6 +61,35 @@
     [_location setText:_zipCodeData[@"location"]];
     [_summary setText:currently[@"summary"]];
     [_temperature setText:[NSString stringWithFormat:@"%li°",[currently[@"apparentTemperature"] integerValue]]];
+}
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
+}
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
+    return [_data[@"hourly"][@"data"] count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+   
+    static NSString *cellIdentifier = @"weatherHourCell";
+    WeatherCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    [cell.iconImageView setImage:[UIImage imageNamed:_data[@"hourly"][@"data"][indexPath.row][@"icon"]]];
+    [cell.temperature setText:[NSString stringWithFormat:@"%li°",[_data[@"hourly"][@"data"][indexPath.row][@"apparentTemperature"] integerValue]]];
+    [cell.time setText:[self convertUnix:_data[@"hourly"][@"data"][indexPath.row][@"time"]]];
+
+    return cell;
+}
+
+- (NSString *)convertUnix:(NSString *)unix {
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:[unix integerValue]];
+    NSDateFormatter * formatter=[[NSDateFormatter alloc] init];
+    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+    [formatter setDateFormat:@"dd/MM/yyyy hh:mma"];
+    [formatter setDateFormat:@"hh:mma"];
+    return [formatter stringFromDate:date];
 }
 
 - (IBAction)dissmissViewController:(id)sender {

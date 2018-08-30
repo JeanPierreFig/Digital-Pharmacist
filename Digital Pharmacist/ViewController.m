@@ -42,7 +42,7 @@
     }
     if ([[segue identifier] isEqualToString:@"Detail"]) {
         WeatherViewController *destination = [segue destinationViewController];
-        destination.ZipCodeData = _zipCodes[[_tableView indexPathForSelectedRow].row];
+        destination.zipCodeData = _zipCodes[[_tableView indexPathForSelectedRow].row];
     }
 }
 

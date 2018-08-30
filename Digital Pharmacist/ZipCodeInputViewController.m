@@ -61,7 +61,7 @@
 - (IBAction)addZipCode:(id)sender {
     if (self.isValidZipCode) {
         [_delegate didAddZipCode:_zipCodeData];
-        [self dissmissViewController:self];
+        [self performSegueWithIdentifier:@"InitDetail" sender:nil];
    }
     else {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Not a valid zip code." message:@"Other reason for this message to show is because the zip to GPS API limit is exceeded." preferredStyle:UIAlertControllerStyleAlert];
