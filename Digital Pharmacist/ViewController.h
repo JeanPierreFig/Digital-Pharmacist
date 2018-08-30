@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZipCodeInputViewController.h"
+#import "WeatherViewController.h"
 
 @interface ViewController : UIViewController <UITableViewDelegate, UITableViewDataSource,ZipCodeDelegate>
 

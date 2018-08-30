@@ -74,11 +74,88 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ZdI-KV-05q" id="abM-zp-AHZ"/>
+                        <segue destination="QDL-7a-6rc" kind="presentation" identifier="Detail" modalTransitionStyle="crossDissolve" id="6lJ-Tl-u21"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="669.60000000000002" y="132.68365817091455"/>
+        </scene>
+        <!--Weather View Controller-->
+        <scene sceneID="P3X-bd-tqC">
+            <objects>
+                <viewController id="QDL-7a-6rc" customClass="WeatherViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wJV-fG-K5K" customClass="Weat">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3j6-EY-nQy">
+                                <rect key="frame" x="147" y="73" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="3VT-01-G4W"/>
+                                    <constraint firstAttribute="height" constant="80" id="PNX-9w-r7v"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNb-gh-UgK">
+                                <rect key="frame" x="157" y="174" width="61" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyi-QZ-aZq">
+                                <rect key="frame" x="175" y="203" width="25" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="summary" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tVG-n1-jMo">
+                                <rect key="frame" x="156" y="259" width="63.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9z-Yq-4Dv">
+                                <rect key="frame" x="24" y="35" width="30" height="49"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="X">
+                                    <color key="titleColor" red="0.14117647059999999" green="0.13725490200000001" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dissmissViewController:" destination="QDL-7a-6rc" eventType="touchUpInside" id="KbZ-Yx-AiU"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Uyj-8l-uTn">
+                                <rect key="frame" x="177.5" y="333.5" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cNb-gh-UgK" firstAttribute="top" secondItem="3j6-EY-nQy" secondAttribute="bottom" constant="21" id="4HK-LX-8y1"/>
+                            <constraint firstItem="v9z-Yq-4Dv" firstAttribute="top" secondItem="wJV-fG-K5K" secondAttribute="top" constant="35" id="C1L-Gu-kp1"/>
+                            <constraint firstItem="Cyi-QZ-aZq" firstAttribute="centerX" secondItem="cNb-gh-UgK" secondAttribute="centerX" id="DQq-VB-UTp"/>
+                            <constraint firstItem="v9z-Yq-4Dv" firstAttribute="leading" secondItem="Khz-oW-EAM" secondAttribute="leading" constant="24" id="EhX-9N-PiM"/>
+                            <constraint firstItem="3j6-EY-nQy" firstAttribute="top" secondItem="Khz-oW-EAM" secondAttribute="top" constant="53" id="FLa-3l-9Dp"/>
+                            <constraint firstItem="3j6-EY-nQy" firstAttribute="centerX" secondItem="Khz-oW-EAM" secondAttribute="centerX" id="Fev-8t-2Ds"/>
+                            <constraint firstItem="Uyj-8l-uTn" firstAttribute="centerY" secondItem="Khz-oW-EAM" secondAttribute="centerY" id="Pis-DM-WzK"/>
+                            <constraint firstItem="tVG-n1-jMo" firstAttribute="top" secondItem="Cyi-QZ-aZq" secondAttribute="bottom" constant="8" id="QRd-wG-EPC"/>
+                            <constraint firstItem="tVG-n1-jMo" firstAttribute="centerX" secondItem="Cyi-QZ-aZq" secondAttribute="centerX" id="U8d-8u-g7B"/>
+                            <constraint firstItem="cNb-gh-UgK" firstAttribute="centerX" secondItem="3j6-EY-nQy" secondAttribute="centerX" id="j6M-WJ-UzW"/>
+                            <constraint firstItem="Cyi-QZ-aZq" firstAttribute="top" secondItem="cNb-gh-UgK" secondAttribute="bottom" constant="8" id="uFK-F3-rv3"/>
+                            <constraint firstItem="Uyj-8l-uTn" firstAttribute="centerX" secondItem="Khz-oW-EAM" secondAttribute="centerX" id="wVn-Zq-KF0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Khz-oW-EAM"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Uyj-8l-uTn" id="qN5-gh-ZAB"/>
+                        <outlet property="iconImageView" destination="3j6-EY-nQy" id="u6e-EV-AxU"/>
+                        <outlet property="location" destination="cNb-gh-UgK" id="lox-6T-ZlV"/>
+                        <outlet property="summary" destination="tVG-n1-jMo" id="aiA-Dn-50R"/>
+                        <outlet property="temperature" destination="Cyi-QZ-aZq" id="hWv-P0-WDb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ROn-7T-Faw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1485.5999999999999" y="778.56071964017997"/>
         </scene>
         <!--Zip Code Input View Controller-->
         <scene sceneID="7BX-fK-HMU">
@@ -150,7 +227,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1520.8" y="132.68365817091455"/>
+            <point key="canvasLocation" x="2074" y="123"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="k3M-ts-VxT">

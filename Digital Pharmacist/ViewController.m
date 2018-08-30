@@ -37,8 +37,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"AddSegue"]) {
-        ZipCodeInputViewController *vc = [segue destinationViewController];
-        vc.delegate = self;
+        ZipCodeInputViewController *destination = [segue destinationViewController];
+        destination.delegate = self;
+    }
+    if ([[segue identifier] isEqualToString:@"Detail"]) {
+        WeatherViewController *destination = [segue destinationViewController];
+        destination.ZipCodeData = _zipCodes[[_tableView indexPathForSelectedRow].row];
     }
 }
 
@@ -76,6 +80,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"Detail" sender:nil];
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [self.zipCodes removeObjectAtIndex:indexPath.row];
@@ -90,7 +98,4 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-
-
-
 @end
